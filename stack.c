@@ -48,4 +48,10 @@ int main()
 	{
 		printf("Enter your choice\n 1.)peek\n2.)push3.)pop\n4.)exit");
 		sacnf("%d,&choice);
-		
+		switch(choice)
+		      {
+			      case 1:peek();
+			      break;
+			      case 2:push(4);
+			      break:
+			      case 3:pop
