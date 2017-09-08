@@ -2,73 +2,102 @@
 #include<stdlib.h>
 #define MAX_SIZE 10
 
-int stack[MAX_SIZE],top=-1;
+int queue[MAX_SIZE],rear=-1,front=-1;
 
-int isFull(){
-	//returns 1 if stack is full else returns -1
-	return top==MAX_SIZE-1;
+int isFull()
+{
+	
+	if((rear==MAX_SIZE-1&&front==0)||rear+1==front)
+	return 1;
+	return 0;
 	
 }
 
-int isEmpty(){
-//returns 1 if stack is empty else returns -1
-	return top==-1;
+int isEmpty()
+{
+	if(rear==-1&&front==-1)
+	return 1;
+	return 0;
 	
 }
 
-int peek(){
-//return element at the top of stack
-	return stack[top];
+void display()
+{
+	int i=front;
+	while(i!=rear)
+	{
+		
+		printf("%d\n",queue[i]);
+	i=(i+1)%MAX_SIZE;
+	}
+	printf("%d",queue[i]);
 }
 
-void push(int e){
-//inserts an element into stack
+void insert(int d)
+{
 	if(!isFull())
 	{
-		top++;//increment the top
-		stack[top]=e;//set top of stack equal e
-		printf("\nYour element %d is successfully inserted",e);//msg element e successfully inserted
+		if(!isEmpty())
+		{
+			front++;
+		}
+		rear=(rear+1)%MAX_SIZE;
+		queue[rear]=d;
+		printf("Element inserted succesfully");
 	}
-	else{
-		//msg stack overflow
-		printf("\nElement cannot be inserted. Stack Overflow!");
+	else
+	{
+		printf("Element not inserted");
 	}
 }
 
-void pop(){
-//deletes an element from top of stack
+void delete()
+{
 	int d;
 	if(!isEmpty())
 	{
-		d=stack[top];//d=top of stack
-		top--;//decrement the top
-		printf("\nYour element %d is successfully deleted",d);//msg element d successfully deleted
+		d=queue[front];
+		if(front==rear)
+		{
+			front=rear=-1;
+		}
+		else
+		{
+			front=(front+1)%MAX_SIZE;
+		}
+		printf("Element deleted sucessfully 	%d",d);
 	}
-	else{
-		printf("\nElement cannot be deleted. Stack Underflow!");//msg stack underflow
+	else
+	{
+		printf("the queue is empty");
 	}
 }
 
-int main(){
+
+
+int main()
+{
 	int choice,e;
 	do
 	{
-		//display menu 1.peek 2.push 3.pop 4.exit
-		printf("\nEnter\n1.Peek\n2.Push\n3.Pop\n4.Exit\n");
+		printf("\nEnter\n1.Display\n2.Insert\n3.Delete\n4.Exit\n");
 		printf("Enter your choice: ");
 		scanf("%d",&choice);	//take input in choice variable
-		switch(choice){
+		switch(choice)
+		{
 			case 1:
-				e=peek();//call peek function
-				printf("\nElement at the top of stack is : %d",e);
+				if(!isEmpty())
+					display();//display
+				else
+					printf("Queue is Empty");
 				break;
 			case 2:
 				printf("\nEnter the elment to be inserted: ");
 				scanf("%d",&e);
-				push(e);//call push function
+				insert(e);
 				break;
 			case 3:
-				pop();//call pop function
+				delete();
 				break;
 			case 4:
 				exit(0);//call exit(0) function or return 0
@@ -80,7 +109,3 @@ int main(){
 	}while(1);
 	return 0;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 519b1b0310e20357e796893663d3183c4dc2d651

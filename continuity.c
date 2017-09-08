@@ -44,7 +44,8 @@ int main(){
         c++;
     }
     if(top==-1)
-    printf("expression is balance");
+    printf("expression is valid");
     else
-    printf("Expression is not balance");
+    printf("Expression is invalid");
 }
+
