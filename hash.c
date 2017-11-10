@@ -1,25 +1,43 @@
 #include<stdio.h>
 #include<math.h>
 #define MAX_SIZE 10
-int hash(int k){
+
+
+int hash(int k)
+{
 	return k%MAX_SIZE;
 }
-int linear_probe(int h){
+
+
+int linear_probe(int h)
+{
 	return ++h%MAX_SIZE;
 }
-int quadratic_probe(int h,int i){
+
+
+int quadratic_probe(int h,int i)
+{
 	return (int)(h+pow(i,2))%MAX_SIZE;
 }
-int double_hash(int h, int i){
+
+
+int double_hash(int h, int i)
+{
 	return (h+i*linear_probe(h))%MAX_SIZE;
 }
-void display(int a[]){
+
+
+void display(int a[])
+{
 	int i;
 	printf("\nThe Elements of Array are\n");
 	for(i=0;i<MAX_SIZE;i++)
 		printf("%d\t",a[i]);	
 }
-int main(){
+
+
+int main()
+{
 	int a[MAX_SIZE],i,ch,h,e,count;
 	for(i=0;i<MAX_SIZE;i++)
 		a[i]=-1;
